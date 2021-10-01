@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+*, *::before, ::after{ box-sizing: border-box;}
+:root{
+    --search: #ceffff;
+}
+body{
+    background: #444;
+    color: #ccc;
+    font-family:'Varela Round', sans-serif;
+}
+#search-div{
+    display: flex;
+    flex-direction: row;
+    width: 14rem;
+    height: 2.4rem;
+    background: var(--search);
+    border-radius: 9px;
+    box-shadow: 0 0 5px black;
+    padding: 0 5px;
+}
+#search-div .fa-search{
+    color: #e96427;
+    width: 100%; height: 100%;
+}
+#search-input, #search-btn{
+    width: 90%;
+    padding: 5px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+#search-div #search-btn{
+    width: 1.5rem; height: 100%;
+    padding: 0;
+    cursor: pointer;
+}
+/* Toggle weather unit */
+#weather-unit{
+    position: absolute;
+    visibility: hidden;
+    left: -1000px;
+}
+#unit-label{
+    cursor: pointer;
+}
+#toggle-unit{
+    display: flex;
+    background: salmon;
+    width: 70px;
+    height: 30px;
+}

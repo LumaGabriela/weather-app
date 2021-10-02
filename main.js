@@ -24,7 +24,7 @@ const searchCity = document.querySelector('#search-input')
 const searchBtn = document.querySelector('#search-btn')
 const toggleUnit = document.querySelector('#weather-unit')
 const currentWeather = weatherInfo('weather-location' ,'weather-temperature', 'weather-sensation', 'general-weather-info', 'min-max-temperatures', 'weather-wind', 'weather-icon')
-
+console.log('patos')
 const getWeatherInfo = async (location, unit) => {
     try{
         const response = await fetch(

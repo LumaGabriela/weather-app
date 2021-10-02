@@ -42,10 +42,23 @@ body{
 }
 #unit-label{
     cursor: pointer;
+    height: 70px;
 }
 #toggle-unit{
     display: flex;
     background: salmon;
+    border-radius: 20px;
     width: 70px;
     height: 30px;
+}
+#toggle-unit::before{
+    content: '';
+    background: wheat;
+    border-radius: 25px;
+    width: 30px;
+    height: 30px;
+    transition: transform .4s ease-in;
+}
+#weather-unit:checked + #toggle-unit::before{
+    transform: translateX(40px);
 }

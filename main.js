@@ -18,13 +18,14 @@ const celsius = {
     icon: '°C',
     speed: 'm/s'
 }
+let currentCity = ''
 const units = [celsius, far]
 
 const searchCity = document.querySelector('#search-input')
 const searchBtn = document.querySelector('#search-btn')
 const toggleUnit = document.querySelector('#weather-unit')
 const currentWeather = weatherInfo('weather-location' ,'weather-temperature', 'weather-sensation', 'general-weather-info', 'min-max-temperatures', 'weather-wind', 'weather-icon')
-console.log('patos')
+
 const getWeatherInfo = async (location, unit) => {
     try{
         const response = await fetch(
@@ -34,6 +35,7 @@ const getWeatherInfo = async (location, unit) => {
             lat: info.coord.lat,
             lon: info.coord.lon
         }
+        currentCity = info.name
         console.log(info)
         displayWeather(info, unit)
         getWeatherForecast(coord.lat, coord.lon)
@@ -69,16 +71,12 @@ searchBtn.addEventListener('click', () => {
     searchCity.value = ''
 })
 toggleUnit.addEventListener('click', () => {
+    if(toggleUnit.checked === true){
+        getWeatherInfo(currentCity, units[1])
+    } else {
+        getWeatherInfo(currentCity, units[0])
+    }
     console.log(toggleUnit.checked)
 })
-getWeatherInfo('London', units[0])
 
-// main:
-// feels_like: 34.61
-// grnd_level: 1005
-// humidity: 55
-// pressure: 1007
-// sea_level: 1007
-// temp: 31.49
-// temp_max: 31.49
-// temp_min: 31.49
+getWeatherInfo('Amapa', units[0])

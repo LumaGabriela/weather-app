@@ -28,7 +28,7 @@ const currentWeather = weatherInfo('weather-location' ,'weather-temperature', 'w
 const getWeatherInfo = async (location, unit) => {
     try{
         const response = await fetch(
-            `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit.name}&appid=24f21e4535689e7b9e7b04d96ed3c4f4`, {mode: 'cors'})
+            `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit.name}&appid=24f21e4535689e7b9e7b04d96ed3c4f4`, {mode: 'cors'})
         const info = await response.json()
         const coord = {
             lat: info.coord.lat,

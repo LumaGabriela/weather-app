@@ -1,12 +1,11 @@
-const weatherInfo = (location, temperature, thermalSensation, weatherInfo, temperatureRange, windInfo, wIcon) => {
+const weatherInfo = (location, temperature, weatherInfo, temperatureRange, windInfo, wIcon) => {
     const city = document.querySelector(`#${location}`)
     const temp = document.querySelector(`#${temperature}`)
-    const sensation = document.querySelector(`#${thermalSensation}`) 
     const weather = document.querySelector(`#${weatherInfo}`)
     const minMax = document.querySelector(`#${temperatureRange}`)
     const wind = document.querySelector(`#${windInfo}`)
     const icon = document.querySelector(`#${wIcon}`)
-    return {city, temp, sensation, weather, minMax, wind, icon}
+    return {city, temp, weather, minMax, wind, icon}
 }
 const far = {
     name: 'imperial',
@@ -24,7 +23,7 @@ const units = [celsius, far]
 const searchCity = document.querySelector('#search-input')
 const searchBtn = document.querySelector('#search-btn')
 const toggleUnit = document.querySelector('#weather-unit')
-const currentWeather = weatherInfo('weather-location' ,'weather-temperature', 'weather-sensation', 'general-weather-info', 'min-max-temperatures', 'weather-wind', 'weather-icon')
+const currentWeather = weatherInfo('weather-location' ,'weather-temperature',  'general-weather-info', 'min-max-temperatures', 'weather-wind', 'weather-icon')
 
 const getWeatherInfo = async (location, unit) => {
     try{
@@ -36,7 +35,6 @@ const getWeatherInfo = async (location, unit) => {
             lon: info.coord.lon
         }
         currentCity = info.name
-        console.log(info)
         displayWeather(info, unit)
         getWeatherForecast(coord.lat, coord.lon)
     } catch(err){
@@ -47,14 +45,13 @@ const getWeatherInfo = async (location, unit) => {
 const getWeatherForecast = async (lat, lon) => {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=24f21e4535689e7b9e7b04d96ed3c4f4`, {mode: 'cors'})
     const info = await response.json()
-    console.log(info)
 }
 
 const displayWeather = (weather, unit) => {
     currentWeather.city.innerHTML = `${weather.name}, ${weather.sys.country}<br>${weather.weather[0].description} `
     currentWeather.icon.src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
     currentWeather.minMax.innerHTML = `min: ${weather.main.temp_min}${unit.icon} <br> max: ${weather.main.temp_max}${unit.icon}`
-    currentWeather.temp.innerText = `${weather.main.temp} ${unit.icon}`
+    currentWeather.temp.innerText = `Temperature: ${weather.main.temp} ${unit.icon}`
     currentWeather.wind.innerText = `Wind speed: ${weather.wind.speed} ${unit.speed}`
     currentWeather.weather.innerHTML = `Feels like: ${weather.main.feels_like}${unit.icon}`
 }
@@ -79,4 +76,4 @@ toggleUnit.addEventListener('click', () => {
     console.log(toggleUnit.checked)
 })
 
-getWeatherInfo('Amapa', units[0])
+getWeatherInfo('Sao paulo', units[0])

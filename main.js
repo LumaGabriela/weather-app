@@ -50,7 +50,7 @@ const getWeatherForecast = async (lat, lon) => {
 
 const displayWeather = (weather, unit) => {
     currentWeather.city.innerHTML = `${weather.name}, ${weather.sys.country}<br>${weather.weather[0].description} `
-    currentWeather.icon.src = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
+    currentWeather.icon.src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
     currentWeather.minMax.innerHTML = `min: ${weather.main.temp_min}${unit.icon} <br> max: ${weather.main.temp_max}${unit.icon}`
     currentWeather.temp.innerText = `${weather.main.temp} ${unit.icon}`
     currentWeather.wind.innerText = `Wind speed: ${weather.wind.speed} ${unit.speed}`
